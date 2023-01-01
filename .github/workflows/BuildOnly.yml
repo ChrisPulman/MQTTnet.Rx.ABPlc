@@ -1,8 +1,6 @@
 name: MQTTnet.Rx.ABPlc CI-BuildOnly
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -10,25 +8,25 @@ jobs:
   build-and-release:
 
     runs-on: windows-2022
- 
+    outputs:
+      nbgv: ${{ steps.nbgv.outputs.SemVer2 }}
     steps:
     - name: Get Current Visual Studio Information
       shell: bash
       run: |
         dotnet tool update -g dotnet-vs
-        echo "## About RELEASE ##"
-        vs where release
-        
-    - name: Update Visual Studio Latest Release
-      if: inputs.useVisualStudioPreview == true
-      shell: bash
-      run: |
-        echo "## Update RELEASE ##"
-        vs update release Enterprise
-        vs modify release Enterprise +mobile +desktop +uwp +web
-        echo "## About RELEASE Updated ##"
+        echo "-- About RELEASE --"
         vs where release
 
+    - name: Update Visual Studio Latest Release
+      shell: bash
+      run: |
+        echo "-- Update RELEASE --"
+        vs update release Enterprise
+        vs modify release Enterprise +mobile +desktop +uwp +web
+        echo "-- About RELEASE Updated --"
+        vs where release
+        
     - name: Checkout
       uses: actions/checkout@v3
       with:

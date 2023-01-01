@@ -15,24 +15,24 @@ namespace MQTTnet.Rx.ABPlc
     public static class Create
     {
         /// <summary>
-        /// Publishes the serial port.
+        /// Publishes the AB PLC tag.
         /// </summary>
         /// <typeparam name="T">The PLC Tag Data Type.</typeparam>
         /// <param name="client">The client.</param>
         /// <param name="topic">The publish topic.</param>
         /// <param name="plcVariable">The variable.</param>
-        /// <param name="configurePlc">The configure S7PLC.</param>
+        /// <param name="configurePlc">The configure AB PLC.</param>
         /// <returns>
         /// MqttClientPublishResult.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
         /// client
         /// or
-        /// configureS7plc
+        /// configure AB plc
         /// or
-        /// s7plc.
+        /// AB plc.
         /// </exception>
-        public static IObservable<MqttClientPublishResult> PublishS7PlcTag<T>(this IObservable<IMqttClient> client, string topic, string plcVariable, Action<IABPlcRx> configurePlc)
+        public static IObservable<MqttClientPublishResult> PublishABPlcTag<T>(this IObservable<IMqttClient> client, string topic, string plcVariable, Action<IABPlcRx> configurePlc)
         {
             if (client == null)
             {
@@ -55,22 +55,22 @@ namespace MQTTnet.Rx.ABPlc
         }
 
         /// <summary>
-        /// Publishes the s7 PLC tag.
+        /// Publishes the AB PLC tag.
         /// </summary>
         /// <typeparam name="T">The PLC Tag Data Type.</typeparam>
         /// <param name="client">The client.</param>
         /// <param name="topic">The publish topic.</param>
         /// <param name="plcVariable">The PLC variable.</param>
-        /// <param name="configurePlc">The configure S7PLC.</param>
+        /// <param name="configurePlc">The configure AB PLC.</param>
         /// <returns>A ApplicationMessageProcessedEventArgs.</returns>
         /// <exception cref="System.ArgumentNullException">
         /// client
         /// or
-        /// configureS7plc
+        /// configure AB plc
         /// or
-        /// s7plc.
+        /// AB plc.
         /// </exception>
-        public static IObservable<ApplicationMessageProcessedEventArgs> PublishS7PlcTag<T>(this IObservable<IManagedMqttClient> client, string topic, string plcVariable, Action<IABPlcRx> configurePlc)
+        public static IObservable<ApplicationMessageProcessedEventArgs> PublishABPlcTag<T>(this IObservable<IManagedMqttClient> client, string topic, string plcVariable, Action<IABPlcRx> configurePlc)
         {
             if (client == null)
             {
