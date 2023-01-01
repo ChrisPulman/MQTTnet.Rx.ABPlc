@@ -51,7 +51,7 @@ namespace MQTTnet.Rx.ABPlc
                 throw new ArgumentNullException(nameof(plc));
             }
 
-            return client.PublishMessage(plc.Observe<T>(plcVariable).Select(payLoad => (topic, payLoad!.ToString())));
+            return client.PublishMessage(plc.Observe<T>(plcVariable).Select(payLoad => (topic, payLoad: payLoad!.ToString()!)));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace MQTTnet.Rx.ABPlc
                 throw new ArgumentNullException(nameof(plc));
             }
 
-            return client.PublishMessage(plc.Observe<T>(plcVariable).Select(payLoad => (topic, payLoad!.ToString())));
+            return client.PublishMessage(plc.Observe<T>(plcVariable).Select(payLoad => (topic, payLoad: payLoad!.ToString()!)));
         }
     }
 }
